@@ -1,0 +1,26 @@
+{% extends "base.html" %}{% block title %}SkillBridge | Build your career{% endblock %}
+{% block content %}
+<section class="hero rounded-4 p-4 p-md-5">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-7">
+      <span class="eyebrow">YOUR CAREER, ORGANIZED</span>
+      <h1 class="display-4 fw-bold mt-3">Turn your skills into your <span>next opportunity.</span></h1>
+      <p class="lead text-secondary mt-3">Understand what you know, discover what employers need, and track your journey from learning to landing an internship or placement.</p>
+      <a class="btn btn-primary btn-lg mt-3 me-2" href="{{ url_for('register') }}">Create student account</a>
+      <a class="btn btn-outline-secondary btn-lg mt-3" href="{{ url_for('login') }}">Login</a>
+    </div>
+    <div class="col-lg-5"><div class="hero-panel">
+      <div class="mini-label">PLACEMENT READINESS</div><div class="display-3 fw-bold">Build<span>.</span></div>
+      <div class="progress my-3" style="height:10px"><div class="progress-bar" style="width:72%"></div></div>
+      <div class="d-flex justify-content-between small text-secondary"><span>Skills</span><span>Opportunities</span><span>Growth</span></div>
+      <hr><div class="d-flex justify-content-between"><span>Skill gap analysis</span><strong class="text-success">Enabled</strong></div>
+      <div class="d-flex justify-content-between mt-2"><span>Application tracking</span><strong class="text-success">Enabled</strong></div>
+    </div></div>
+  </div>
+</section>
+<div class="row g-3 mt-3">
+  {% for n,t,d in [('01','Build your profile','Keep your technical and soft skills in one place.'),('02','Find your match','Compare your profile with opportunity requirements.'),('03','Close skill gaps','Focus on skills that appear in your target roles.'),('04','Track progress','Follow every application from interest to result.')] %}
+  <div class="col-md-6 col-lg-3"><div class="feature-card h-100"><div class="feature-number">{{ n }}</div><h5>{{ t }}</h5><p class="text-secondary mb-0">{{ d }}</p></div></div>
+  {% endfor %}
+</div>
+{% endblock %}

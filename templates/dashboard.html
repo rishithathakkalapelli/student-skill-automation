@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Dashboard | SkillBridge{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end mb-4"><div><span class="eyebrow">STUDENT OVERVIEW</span><h2 class="fw-bold mt-2">Hey, {{ user['name'] }} 👋</h2><p class="text-secondary mb-0">Your career preparation at a glance.</p></div><a class="btn btn-primary mt-3" href="{{ url_for('skills') }}">+ Add a skill</a></div>
+<div class="row g-3 mb-4">
+<div class="col-md-4"><div class="stat-card"><span class="text-secondary">Skills added</span><div class="stat-number">{{ skills|length }}</div><small class="text-secondary">Across your profile</small></div></div>
+<div class="col-md-4"><div class="stat-card"><span class="text-secondary">Applications tracked</span><div class="stat-number">{{ app_count }}</div><small class="text-secondary">Your opportunities</small></div></div>
+<div class="col-md-4"><div class="stat-card"><span class="text-secondary">Skill readiness</span><div class="stat-number">{{ readiness }}%</div><small class="text-secondary">Intermediate or advanced skills</small></div></div>
+</div>
+<div class="row g-4"><div class="col-lg-7"><div class="section-card"><div class="d-flex justify-content-between"><h5 class="fw-bold">Recommended opportunities</h5><a href="{{ url_for('opportunities') }}">View all</a></div>
+{% for item in matches %}<div class="opportunity-row"><div><strong>{{ item.opportunity['title'] }}</strong><div class="small text-secondary">{{ item.opportunity['company'] }} · {{ item.opportunity['kind'] }}</div><div class="small mt-1">Missing: {{ item.missing|join(', ') if item.missing else 'None – you match all listed skills!' }}</div></div><span class="match-pill">{{ item.score }}%</span></div>{% else %}<p class="text-secondary">No opportunities available yet.</p>{% endfor %}</div></div>
+<div class="col-lg-5"><div class="section-card h-100"><h5 class="fw-bold">Your next steps</h5><a class="step-link" href="{{ url_for('skills') }}">01 · Add and update your skills</a><a class="step-link" href="{{ url_for('roadmap') }}">02 · Review your skill gap roadmap</a><a class="step-link" href="{{ url_for('opportunities') }}">03 · Explore matching opportunities</a><a class="step-link" href="{{ url_for('applications') }}">04 · Update application progress</a></div></div></div>
+{% endblock %}
